@@ -148,7 +148,7 @@
 \renewcommand{\listfigurename}{List of Figures}
 \renewcommand{\listtablename}{List of Tables}
 \renewcommand{\CTEX@contentsname}{\zihao{-3}Contents}
-\ctexset{bibname=References,appendixname=Appendix~}
+\ctexset{bibname=References,tablename=Table,figurename=Figure,appendixname=Appendix~}
 }
 \DeclareOption{bachelor}{\bachelor@uestcthesis}
 \DeclareOption{master}{\master@uestcthesis}
@@ -962,10 +962,10 @@ pdfdisplaydoctitle=true
 }
 \AtEndDocument{%插入到论文内容最后面。
 \begin{CJK}{UTF8}{rm}
-\ifdefstring{\degree@uestcthesis}{bachelor}{%检测是否为本科论文，调换参考文献与致谢的顺序
-\insertreference
-\newpage
+\ifdefstring{\degree@uestcthesis}{bachelor}{%检测是否为本科论文，调换参考文献与致谢的顺序，根据最新规范，不调了
 \insertacknowledgement
+\newpage
+\insertreference
 }{
 \insertacknowledgement
 \newpage
@@ -1006,26 +1006,33 @@ pdfdisplaydoctitle=true
  {#6{\hskip #3\relax \@svsec \csname CTEX@#1@titleformat\endcsname #8}\csname #1mark
  \endcsname {#7}}\fi \@xsect {#5}}
 
-\renewcommand{\chaptermark}[1]{\markboth{外文资料原文}{}}
-\def\leftmark{外文资料原文}
+%\renewcommand{\chaptermark}[1]{\markboth{外文资料原文}{}}
+\renewcommand{\chaptermark}[1]{\markboth{Foreign Language Materials}{}}
+%\def\leftmark{外文资料原文}
+\def\leftmark{Foreign Language Materials}
 \newpage
 \phantomsection
-\addcontentsline{toc}{chapter}{外文资料原文}
-
+%\addcontentsline{toc}{chapter}{外文资料原文}
+\addcontentsline{toc}{chapter}{Foreign Language Materials}
 \renewcommand{\CTEX@figurename}{Figure}
 \renewcommand{\CTEX@tablename}{Table}
 
 \include{contents/original}
+\addtocounter{page}{+3}
 \newpage
 \phantomsection
-\addcontentsline{toc}{chapter}{外文资料译文}
-\renewcommand{\chaptermark}[1]{\markboth{外文资料译文}{}}
-\def\leftmark{外文资料译文}
+
+%\addcontentsline{toc}{chapter}{外文资料译文}
+\addcontentsline{toc}{chapter}{Translations of Foreign Language Materials}
+%\renewcommand{\chaptermark}[1]{\markboth{外文资料译文}{}}
+\renewcommand{\chaptermark}[1]{\markboth{Translations of Foreign Language Materials}{}}
+%\def\leftmark{外文资料译文}
+\def\leftmark{Translations of Foreign Language Materials}
 
 \renewcommand{\CTEX@figurename}{图}
 \renewcommand{\CTEX@tablename}{表}
 
-\setcounter{chapter}{0}
+%\setcounter{chapter}{0}
 
 \include{contents/translation}
 }
